@@ -6,6 +6,7 @@ NyxSignal is a crypto market-intelligence system designed to turn AI-assisted ma
 
 - **Gemini** acts as the market research and strategy layer.
 - **NyxSignal** consumes structured market-analysis JSON.
+- The ingestion boundary validates both the canonical schema and important semantic invariants.
 - The application can combine those predictions with live market data.
 - Predictions are measured against later market outcomes.
 - The system should optimize for evidence, consistency, and calibration rather than the number of trades it produces.
@@ -38,6 +39,17 @@ NyxSignal does **not** treat predictions as guarantees. Each opportunity can con
 
 The key distinction is that **confidence in an analysis is not the same thing as probability of profit**.
 
+## Validation boundary
+
+The current Node.js contract layer validates Gemini payloads against `docs/gemini-output-schema.json` and additionally checks:
+
+- unique prediction IDs
+- probability distributions summing to 1.0 within tolerance
+- correctly ordered entry zones
+- recommended allocation not exceeding maximum exposure
+
+The canonical fixture can be checked with `npm run validate:example`, and regression tests run with `npm test`.
+
 ## Long-term objective
 
 Build a prediction → outcome → measurement loop that can evaluate:
@@ -55,4 +67,4 @@ A valid result can be **NO TRADE**. NyxSignal must never manufacture an opportun
 
 ## Current scope
 
-The initial repository contains the project contract, machine-readable schema, and an example market-analysis snapshot. Live application infrastructure, Vercel deployment, Supabase persistence, exchange APIs, and automated execution are intentionally deferred until the core contract is stable.
+The repository currently contains the project contract, machine-readable schema, representative market-analysis snapshot, and the first validation/CI boundary. Live market-data integration, web UI, Vercel deployment, Supabase persistence, exchange APIs, and automated execution remain separate future subsystems.
