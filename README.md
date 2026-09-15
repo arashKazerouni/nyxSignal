@@ -6,10 +6,27 @@ NyxSignal is a crypto market-intelligence system designed to turn AI-assisted ma
 
 - **Gemini** acts as the market research and strategy layer.
 - **NyxSignal** consumes structured market-analysis JSON.
-- The ingestion boundary validates both the canonical schema and important semantic invariants.
-- The application can combine those predictions with live market data.
-- Predictions are measured against later market outcomes.
-- The system should optimize for evidence, consistency, and calibration rather than the number of trades it produces.
+- The ingestion boundary validates the canonical schema and semantic invariants.
+- A normalized CoinGecko adapter supplies live market data.
+- A deterministic scorer filters and ranks candidates without pretending to predict probabilities.
+- Research predictions can be resolved later as profit, flat, or loss.
+- The system measures calibration rather than optimizing for the number of trades.
+
+## MVP
+
+The current MVP is a Next.js dashboard with:
+
+- live CoinGecko market radar
+- capital and timeframe controls
+- transparent liquidity/data-quality candidate scoring
+- reserve-first capital presentation
+- the initial structured Gemini research snapshot
+- visible profit/flat/loss probabilities and confidence
+- browser-local prediction outcome tracking
+- multiclass Brier score and accuracy
+- no automated wallet or exchange execution
+
+The deployed MVP can use CoinGecko's public low-volume API path for initial testing. A production/high-frequency data plan and additional providers should be added only when the product requirements justify them.
 
 ## Time horizons
 
@@ -21,50 +38,34 @@ NyxSignal is a crypto market-intelligence system designed to turn AI-assisted ma
 
 ## Prediction model
 
-NyxSignal does **not** treat predictions as guarantees. Each opportunity can contain:
-
-- probability of profit
-- probability of a flat outcome
-- probability of loss
-- confidence in the analysis
-- risk score and level
-- entry zone
-- targets
-- invalidation price
-- expected upside/downside
-- risk/reward
-- recommended allocation
-- evidence and catalysts
-- a unique `prediction_id`
+NyxSignal does **not** treat predictions as guarantees. Each opportunity can contain probability of profit, flat, and loss; confidence; risk; entry/targets/invalidation; expected upside/downside; risk/reward; allocation; evidence; catalysts; and a unique `prediction_id`.
 
 The key distinction is that **confidence in an analysis is not the same thing as probability of profit**.
 
 ## Validation boundary
 
-The current Node.js contract layer validates Gemini payloads against `docs/gemini-output-schema.json` and additionally checks:
+The Node.js contract layer validates Gemini payloads against `docs/gemini-output-schema.json` and checks unique prediction IDs, probability sums, entry-zone ordering, and allocation limits.
 
-- unique prediction IDs
-- probability distributions summing to 1.0 within tolerance
-- correctly ordered entry zones
-- recommended allocation not exceeding maximum exposure
+Run locally with:
 
-The canonical fixture can be checked with `npm run validate:example`, and regression tests run with `npm test`.
+```bash
+npm install
+npm test
+npm run validate:example
+npm run build
+npm run dev
+```
 
-## Long-term objective
+## Measurement objective
 
-Build a prediction → outcome → measurement loop that can evaluate:
+The long-term product loop is:
 
-- prediction accuracy
-- probability calibration
-- win rate
-- false positives and false negatives
-- performance by timeframe
-- performance by strategy
-- performance by asset
-- performance by market regime
+**research → prediction → outcome → calibration → improved research**
+
+NyxSignal should measure prediction accuracy, probability calibration, false positives/negatives, performance by timeframe/strategy/asset/regime, and when appropriate expected return after costs.
 
 A valid result can be **NO TRADE**. NyxSignal must never manufacture an opportunity simply because the user wants one.
 
-## Current scope
+## Architecture boundaries
 
-The repository currently contains the project contract, machine-readable schema, representative market-analysis snapshot, and the first validation/CI boundary. Live market-data integration, web UI, Vercel deployment, Supabase persistence, exchange APIs, and automated execution remain separate future subsystems.
+The repository intentionally keeps exchange execution, wallet integration, high-frequency feeds, and durable multi-user storage outside the MVP. Browser-local outcome tracking demonstrates the measurement loop first; a server-side database should be introduced when multi-user persistence and historical analytics are actually required.
