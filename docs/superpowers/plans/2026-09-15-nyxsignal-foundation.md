@@ -6,7 +6,7 @@
 
 **Architecture:** Gemini remains the external market-research layer. NyxSignal owns the machine-readable prediction contract and will later combine predictions with live market data and outcome tracking. Infrastructure such as Supabase and Vercel is intentionally deferred until persistence and deployment are needed.
 
-**Tech Stack:** Documentation + JSON Schema in the initial phase; application/runtime stack to be selected after the data contract is validated.
+**Tech Stack:** JSON Schema + Node.js ESM runtime for the contract validation layer; web framework, database, and deployment remain deferred.
 
 **Spec:** `docs/architecture.md`
 
@@ -44,7 +44,7 @@
 - [x] **Step 3: Add validation ranges for probabilities, confidence, risk, and allocation**
 - [x] **Step 4: Disallow undocumented top-level and nested fields where the contract is stable**
 
-**Verification:** Parse the schema as JSON and validate the example payload against the schema before the application layer is built.
+**Verification:** Read the canonical schema and confirm its required fields and validation ranges match the approved contract.
 
 ---
 
@@ -57,20 +57,29 @@
 - [x] **Step 2: Preserve the three initial prediction IDs**
 - [x] **Step 3: Preserve the no-trade conditions and probabilities exactly as supplied**
 
-**Verification:** Parse the example as JSON and compare its structure with `docs/gemini-output-schema.json`.
+**Verification:** Read the fixture and confirm the three probability distributions each sum to 1.0 and the three prediction IDs are unique.
 
 ---
 
-### Task 4: Next implementation boundary
+### Task 4: Contract validator and ingestion boundary
 
 **Files:**
-- Future application files only after the contract is validated.
+- Create: `package.json`
+- Create: `src/contract/validate-analysis.mjs`
+- Create: `src/contract/validate-analysis.test.mjs`
+- Create: `scripts/validate-example.mjs`
+- Create: `.github/workflows/ci.yml`
 
-- [ ] **Step 1: Build a schema validator/ingestion layer**
+- [x] **Step 1: Build a schema validator/ingestion layer**
+  - Validate the canonical JSON Schema with Ajv.
+  - Enforce semantic invariants that JSON Schema cannot express: unique prediction IDs, probability sum tolerance, valid entry-zone ordering, and allocation not exceeding maximum exposure.
+  - Expose a small `validateAnalysis(input)` boundary returning `{ valid, errors }`.
+  - Add regression tests for the canonical fixture and each semantic invariant.
+  - Add a CI workflow that runs the test suite and validates the canonical fixture.
 - [ ] **Step 2: Add live market-data integration**
 - [ ] **Step 3: Build opportunity filtering/scoring and capital-aware presentation**
 - [ ] **Step 4: Add persistent prediction/outcome storage**
 - [ ] **Step 5: Add calibration and historical performance analytics**
 - [ ] **Step 6: Deploy the web application**
 
-**Verification:** Each subsystem must have its own test cycle before the next dependency is introduced.
+**Verification:** Contract tests and fixture validation must pass in CI before live market-data integration begins.
