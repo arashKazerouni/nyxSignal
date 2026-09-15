@@ -1,0 +1,170 @@
+{
+  "analysis_timestamp": "2026-09-15T14:45:00Z",
+  "market_regime": {
+    "primary": "BEARISH",
+    "secondary": "TRANSITIONING",
+    "explanation": "BTC rejected $79,000 and broke below $77,000 short-term support, with market breadth weakening as BTC dominance hovers around 58%, sucking liquidity from alts amid macro rate jitters."
+  },
+  "market_summary": {
+    "btc_condition": "Retesting key multi-week demand shelf at $75,500-$76,200 after upper range rejection.",
+    "eth_condition": "Demonstrating relative strength vs BTC supported by sustained weekly net spot ETF inflows, consolidating near $2,475.",
+    "market_sentiment": "Neutral (Fear & Greed Index at 57, cooling down from 71 previous week).",
+    "volatility": "Low-to-Moderate (compression ahead of macroeconomic rate catalyst).",
+    "major_catalysts": [
+      "Federal Reserve rate expectations repricing",
+      "Institutional Ethereum spot ETF sustained multi-week inflows",
+      "BTC dominance consolidation near 58%"
+    ],
+    "major_risks": [
+      "Breakdown of BTC $75,500 support shelf triggering cascading long liquidations",
+      "Macro risk-off contagion across broader equities and risk assets",
+      "Weak altcoin bid depth during BTC pullbacks"
+    ]
+  },
+  "strategies": [
+    {
+      "strategy": "pullback",
+      "suitable_horizons": ["swing", "short_term"],
+      "reason": "Market is in an orderly correction; buying established structural support in relative strength leaders yields favorable risk/reward.",
+      "failure_conditions": "High-volume breakdown below key HTF support levels invalidates pullback logic into momentum breakdown."
+    },
+    {
+      "strategy": "mean_reversion",
+      "suitable_horizons": ["scalping", "short_term"],
+      "reason": "Compressed volatility and well-defined range boundaries favor buying support tests and fading resistance tests.",
+      "failure_conditions": "Strong trend expansion candle backed by open interest surge."
+    }
+  ],
+  "opportunities": [
+    {
+      "prediction_id": "PRED-20260915-ETH-SWING-001",
+      "asset": "Ethereum",
+      "symbol": "ETH",
+      "trading_pair": "ETH/USD",
+      "timeframe": "SWING",
+      "current_price": 2474.87,
+      "setup": "Bullish pullback into April/May S/R flip zone backed by consistent spot ETF institutional accumulation.",
+      "strategy": "pullback",
+      "entry_zone": { "low": 2400.0, "high": 2445.0 },
+      "target_1": 2550.0,
+      "target_2": 2680.0,
+      "invalidation_price": 2345.0,
+      "expected_upside_percent": 7.35,
+      "expected_downside_percent": 3.79,
+      "risk_reward_ratio": 1.94,
+      "probabilities": { "profit": 0.54, "flat": 0.22, "loss": 0.24 },
+      "confidence": 68,
+      "risk": {
+        "score": 45,
+        "level": "MEDIUM",
+        "main_risks": [
+          "BTC failing $75,500 dragging down the entire crypto complex",
+          "ETF inflow reversal upon macro shock"
+        ]
+      },
+      "allocation": { "recommended_percent": 5.0, "recommended_amount": null, "maximum_exposure_percent": 8.0 },
+      "evidence": [
+        "Four consecutive weeks of net positive spot ETF inflows totaling over $220M",
+        "ETH/BTC pair exhibiting short-term divergence from market sell-off",
+        "Horizontal confluence with prior consolidation resistance now acting as support"
+      ],
+      "catalysts": [
+        "Sustained institutional spot ETF inflows",
+        "Upcoming network upgrade milestones"
+      ],
+      "invalidation_reasons": [
+        "Daily candle close below $2,345.00 confirming breakdown of structural demand shelf",
+        "Negative ETF flow print exceeding $100M in a single day"
+      ]
+    },
+    {
+      "prediction_id": "PRED-20260915-BTC-SHORT-002",
+      "asset": "Bitcoin",
+      "symbol": "BTC",
+      "trading_pair": "BTC/USD",
+      "timeframe": "SHORT_TERM",
+      "current_price": 75760.82,
+      "setup": "Intraday mean-reversion scalp from $75,500 liquidity sweep zone back toward VWAP and breakdown origin.",
+      "strategy": "mean_reversion",
+      "entry_zone": { "low": 75400.0, "high": 75800.0 },
+      "target_1": 77100.0,
+      "target_2": 78200.0,
+      "invalidation_price": 74800.0,
+      "expected_upside_percent": 2.24,
+      "expected_downside_percent": 1.05,
+      "risk_reward_ratio": 2.13,
+      "probabilities": { "profit": 0.51, "flat": 0.24, "loss": 0.25 },
+      "confidence": 62,
+      "risk": {
+        "score": 55,
+        "level": "MEDIUM",
+        "main_risks": [
+          "Overnight liquidation cascade through the $75,000 round number",
+          "Sellers showing aggressive spot absorption preventing meaningful relief"
+        ]
+      },
+      "allocation": { "recommended_percent": 4.0, "recommended_amount": null, "maximum_exposure_percent": 6.0 },
+      "evidence": [
+        "Hourly RSI hitting oversold (<30) at significant structural support shelf",
+        "Open interest compression indicating short-covering potential on retest"
+      ],
+      "catalysts": [
+        "Short squeeze on late bears chasing the break of $76,000"
+      ],
+      "invalidation_reasons": [
+        "4-hour candle close below $74,800 confirming supply dominance and continuation toward $73,500"
+      ]
+    },
+    {
+      "prediction_id": "PRED-20260915-SOL-MEDIUM-003",
+      "asset": "Solana",
+      "symbol": "SOL",
+      "trading_pair": "SOL/USD",
+      "timeframe": "MEDIUM_TERM",
+      "current_price": 100.63,
+      "setup": "Range low accumulation near $100 psychological anchor with positive 30-day relative strength baseline.",
+      "strategy": "support_resistance",
+      "entry_zone": { "low": 97.0, "high": 101.0 },
+      "target_1": 114.0,
+      "target_2": 126.0,
+      "invalidation_price": 93.5,
+      "expected_upside_percent": 14.8,
+      "expected_downside_percent": 5.8,
+      "risk_reward_ratio": 2.55,
+      "probabilities": { "profit": 0.47, "flat": 0.28, "loss": 0.25 },
+      "confidence": 58,
+      "risk": {
+        "score": 62,
+        "level": "HIGH",
+        "main_risks": [
+          "High beta to BTC downside: loss of $100 could rapidly test the $88-$90 liquidity void",
+          "DEX volume deceleration over the past two weeks"
+        ]
+      },
+      "allocation": { "recommended_percent": 2.5, "recommended_amount": null, "maximum_exposure_percent": 4.0 },
+      "evidence": [
+        "Round-number defense ($100) coinciding with balanced buy/sell order flow",
+        "36% monthly performance cushion absorbing short-term profit taking"
+      ],
+      "catalysts": [
+        "Ecosystem liquidity initiatives and DeFi expansion updates"
+      ],
+      "invalidation_reasons": [
+        "Daily close below $93.50 violating the 30-day higher-low structure"
+      ]
+    }
+  ],
+  "top_opportunities": {
+    "scalping": ["NO_HIGH_QUALITY_OPPORTUNITY"],
+    "short_term": ["PRED-20260915-BTC-SHORT-002"],
+    "swing": ["PRED-20260915-ETH-SWING-001"],
+    "medium_term": ["PRED-20260915-SOL-MEDIUM-003"],
+    "long_term": ["NO_HIGH_QUALITY_OPPORTUNITY"]
+  },
+  "no_trade_conditions": [
+    "BTC daily close below $75,500",
+    "Aggregate market funding rates turn deeply negative with rising open interest indicating aggressive short positioning",
+    "Macro volatility spike across traditional markets preceding central bank policy releases",
+    "Slippage exceeding 0.35% on altcoin execution pairs"
+  ]
+}
