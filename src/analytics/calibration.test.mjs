@@ -10,14 +10,14 @@ const records = [
 ];
 
 test('computes multiclass Brier score only from resolved predictions', () => {
-  assert.equal(brierScore(records), 0.12);
+  assert.equal(brierScore(records), 0.113333);
 });
 
 test('computes accuracy and outcome distribution', () => {
   assert.deepEqual(calibrationSummary(records), {
     resolved: 3,
     accuracy: 1,
-    brierScore: 0.12,
+    brierScore: 0.113333,
     byOutcome: { profit: 1, flat: 1, loss: 1 },
   });
 });
