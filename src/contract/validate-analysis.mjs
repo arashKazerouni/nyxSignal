@@ -1,8 +1,8 @@
-import Ajv from 'ajv';
+import Ajv2020 from 'ajv/dist/2020.js';
 import addFormats from 'ajv-formats';
 import schema from '../../docs/gemini-output-schema.json' with { type: 'json' };
 
-const ajv = new Ajv({ allErrors: true, strict: true });
+const ajv = new Ajv2020({ allErrors: true, strict: true });
 addFormats(ajv);
 const validateSchema = ajv.compile(schema);
 
