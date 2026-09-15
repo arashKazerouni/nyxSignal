@@ -16,3 +16,4 @@ jobs:
       - run: npm install --no-package-lock
       - run: npm test
       - run: npm run validate:example
+      - run: npm run build
