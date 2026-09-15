@@ -4,11 +4,18 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
     "test": "node --test src/contract/validate-analysis.test.mjs src/market-data/coingecko.test.mjs src/opportunities/score-opportunities.test.mjs src/storage/prediction-store.test.mjs src/analytics/calibration.test.mjs",
     "validate:example": "node scripts/validate-example.mjs"
   },
   "dependencies": {
+    "@ajv/formats": "^3.0.1",
     "ajv": "^8.17.1",
-    "ajv-formats": "^3.0.1"
+    "ajv-formats": "^3.0.1",
+    "next": "^16.3.4",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   }
 }
