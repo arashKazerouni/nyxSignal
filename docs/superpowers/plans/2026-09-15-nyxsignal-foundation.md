@@ -75,20 +75,15 @@
 - Create: `docs/market-data.md`
 
 - [x] **Step 1: Build a schema validator/ingestion layer**
-  - Validate the canonical JSON Schema with Ajv 2020.
-  - Enforce semantic invariants that JSON Schema cannot express: unique prediction IDs, probability sum tolerance, valid entry-zone ordering, and allocation not exceeding maximum exposure.
-  - Expose a small `validateAnalysis(input)` boundary returning `{ valid, errors }`.
-  - Add regression tests for the canonical fixture and each semantic invariant.
-  - Add a CI workflow that runs the test suite and validates the canonical fixture.
 - [x] **Step 2: Add the first live market-data integration boundary**
-  - Add an isolated CoinGecko `/coins/markets` adapter.
-  - Normalize provider-specific fields into a stable NyxSignal market record.
-  - Surface HTTP and malformed-payload failures instead of silently returning empty data.
-  - Inject `fetch` in tests so the adapter is deterministic and network-independent.
-  - Expand `npm test` to discover the complete `src` test tree.
-- [ ] **Step 3: Build opportunity filtering/scoring and capital-aware presentation**
+- [x] **Step 3: Build opportunity filtering/scoring and capital-aware presentation**
+  - Add deterministic liquidity/data-quality filtering and transparent candidate scoring.
+  - Keep probability estimates out of the heuristic scorer.
+  - Add capital-aware risk-budget presentation with a configurable reserve and position cap.
+  - Return `NO_TRADE` when no candidate survives the filters.
+
+**Verification:** Contract, market-data, and opportunity-scoring tests plus fixture validation must pass in CI before persistence work begins.
+
 - [ ] **Step 4: Add persistent prediction/outcome storage**
 - [ ] **Step 5: Add calibration and historical performance analytics**
 - [ ] **Step 6: Deploy the web application**
-
-**Verification:** Contract and market-data adapter tests plus fixture validation must pass in CI before opportunity scoring begins.
