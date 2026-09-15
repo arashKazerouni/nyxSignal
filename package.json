@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "test": "node --test src",
+    "test": "node --test src/contract/validate-analysis.test.mjs src/market-data/coingecko.test.mjs",
     "validate:example": "node scripts/validate-example.mjs"
   },
   "dependencies": {
