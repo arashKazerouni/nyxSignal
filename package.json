@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "test": "node --test src/contract/validate-analysis.test.mjs",
+    "test": "node --test src",
     "validate:example": "node scripts/validate-example.mjs"
   },
   "dependencies": {
