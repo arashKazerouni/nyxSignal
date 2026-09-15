@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "test": "node --test src/contract/validate-analysis.test.mjs src/market-data/coingecko.test.mjs src/opportunities/score-opportunities.test.mjs",
+    "test": "node --test src/contract/validate-analysis.test.mjs src/market-data/coingecko.test.mjs src/opportunities/score-opportunities.test.mjs src/storage/prediction-store.test.mjs src/analytics/calibration.test.mjs",
     "validate:example": "node scripts/validate-example.mjs"
   },
   "dependencies": {
